@@ -30,7 +30,7 @@ pipeline {
         stage('Publish'){
              steps{
                  script{
-                     sshPublisher(publishers: [sshPublisherDesc(configName: 'googlecloud', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sudo kill -9 \\$(lsof -t -i:8000 -sTCP:LISTEN);sudo systemctl start JarService', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: '**/target/MapperSpringBoot-1-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'googlecloud', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sudo fuser -k 8000/tcp;sudo systemctl start JarService', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: '**/target/MapperSpringBoot-1-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                        }
                   }
           
